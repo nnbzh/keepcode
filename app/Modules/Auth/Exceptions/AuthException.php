@@ -9,6 +9,6 @@ class AuthException extends InternalException
 {
     public static function unauthorized(): AuthException
     {
-        return static::new(ExceptionCode::UNAUTHORIZED);
+        return static::new(ExceptionCode::UNAUTHENTICATED);
     }
 }

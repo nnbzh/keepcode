@@ -4,8 +4,7 @@ namespace App\Exceptions;
 
 enum ExceptionCode: int
 {
-    case UNAUTHORIZED = 10_101;
-    case USER_ALREADY_EXISTS = 10_102;
+    case UNAUTHENTICATED = 10_101;
     case PRODUCT_IS_NOT_FREE = 10_201;
     case CART_IS_EMPTY = 10_301;
     case UNAVAILABLE_PRODUCTS = 10_302;
@@ -27,7 +26,8 @@ enum ExceptionCode: int
         $value = $this->value;
 
         return match (true) {
-            $value >= 90_000 => 400,
+            $value == self::UNAUTHENTICATED->value => 401,
+            $value >= 10_201 => 422,
             default => 500
         };
     }
